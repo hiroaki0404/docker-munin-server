@@ -26,7 +26,7 @@ fi
 for NODE in $NODES
 do
   NAME=`echo $NODE | cut -d ":" -f1`
-  HOST=`echo $NODE | cut -d ":" -f2`
+  HOST=`echo $NODE | sed 's/^[^:]*://'`
   if ! grep -q $HOST /etc/munin/munin.conf ; then
     cat << EOF >> /etc/munin/munin.conf
 [$NAME]
